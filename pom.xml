@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Información del proyecto -->
+    <groupId>com.miempresa</groupId>
+    <artifactId>mi-proyecto</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging> <!-- Empaque como archivo WAR para aplicaciones web -->
+
+    <name>Mi Proyecto de Gestión de Tareas</name>
+    <description>Una aplicación web para la gestión de tareas usando Java EE</description>
+
+    <!-- Configuración de propiedades del proyecto -->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source> <!-- Versión de Java -->
+        <maven.compiler.target>11</maven.compiler.target>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <javax.ejb.version>3.2</javax.ejb.version>
+        <javax.persistence.version>2.2</javax.persistence.version>
+    </properties>
+
+    <!-- Dependencias del proyecto -->
+    <dependencies>
+        <!-- Dependencia de Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependencia de EJB API -->
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>javax.ejb-api</artifactId>
+            <version>${javax.ejb.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependencia de JPA API -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>${javax.persistence.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Implementación de JPA (H2 es una base de datos en memoria para desarrollo) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Dependencia de JSTL para JSP -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Configuración de plugins de Maven -->
+    <build>
+        <plugins>
+            <!-- Plugin de Maven para compilar el código -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin de Maven para empaquetar como WAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml> <!-- Opcional, solo si usas Servlet 3.0+ -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Configuración de plugins de Maven para pruebas -->
+    <build>
+        <plugins>
+            <!-- Plugin de Maven para pruebas unitarias -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
